@@ -4,11 +4,10 @@
 3)Check for hues, brightness and saturation */
 const colorDiv = document.querySelectorAll('.color')
 const currentHex = document.querySelectorAll('.color h2');
-const generateBtn = document.querySelector('.generate')
-console.log(currentHex)
 let initialColors;
-document.addEventListener('DOMContentLoaded', () => { 
-  //Generating color from sratch  
+document.addEventListener('DOMContentLoaded', () => {
+    const generateBtn = document.querySelector('.generate')
+    //Generating color from sratch  
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -17,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function generateRGB() {
         let red = getRandomInt(0, 256),
-        green = getRandomInt(0, 256),
-        blue = getRandomInt(0, 256); 
-        return [red, green, blue];   
+            green = getRandomInt(0, 256),
+            blue = getRandomInt(0, 256);
+        return [red, green, blue];
     }
     
     function ColorToHex(color) {
@@ -36,24 +35,40 @@ document.addEventListener('DOMContentLoaded', () => {
         let colors = document.querySelectorAll('.color')
         
         for (const color of colors) {
+            let lockBtn = color.querySelector('button.lock');
+            if (lockBtn.firstChild.classList.contains('fa-lock')) {
+                continue;
+            }
+            
             let [red, green, blue] = generateRGB();
             let hex = ConvertRGBtoHex(red, green, blue);
-            console.log(hex,[red, green, blue])
+            console.log(hex, [red, green, blue])
             color.style = `background: ${hex}`;
-
+            
             let hexText = color.querySelector('h2');
             hexText.innerHTML = hex
         }
-    }   
+    }
+    function toggleLock(btn) {
+        if (btn.firstChild.classList.contains('fa-lock-open')) {
+            btn.firstChild.classList.replace('fa-lock-open', 'fa-lock')
+        } else {
+            btn.firstChild.classList.replace("fa-lock", "fa-lock-open")
+        }
+    }
     updateColor();
-
-//All event listeners
     
-   //document.querySelectorAll('fa-lock-open').forEach(item => {
-        //item.addEventListener('click', event => { toggle().classList('fa-lock')
-            //handle click
-        //})
-    //}))
+    //All event listeners
+    document.querySelectorAll('button.lock').forEach(item => {
+        item.addEventListener('click', (event) => {
+            //clicking on btn.lock = toggle the icon, no chnage in bg color
+            // on click, add classlist of fa-lock and remove fa-lock-open and vice versa
+            toggleLock(event.target)
+        })
+    })
+    generateBtn.addEventListener('click', e => {
+        updateColor()
+    })
     
     window.addEventListener('keydown', (e) => {
         if (e.code == 'Space') {
