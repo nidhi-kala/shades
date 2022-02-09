@@ -120,9 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let shade = color.shades[i];
             let tintElem = variants.querySelector(`[data-tint-id="${i}"]`);
             let shadeElem = variants.querySelector(`[data-shade-id="${i}"]`);
-
-            tintElem.style = `background-color: ${tint}`;
-            shadeElem.style = `background-color: ${shade}`;
+            tintElem.style = `background-color: ${tint}; color: #191919;`;
+            shadeElem.style = `background-color: ${shade}; color: #dad9d9;`;
+            tintElem.innerHTML = `${tint}`
+            shadeElem.innerHTML = `${shade}`
         }
     }
     
@@ -148,12 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             currentElement.style = `background: ${hex}`;
             updateVariants(colors[i]);
-
+            let originalSlab = currentElement.querySelector('.original')
+            originalSlab.innerHTML = hex
             let hexText = currentElement.querySelector('h2');
             hexText.innerHTML = hex;
+
         }
 
-        console.log(colors)
     }
     
     function toggleLock(btn) {
@@ -169,12 +171,32 @@ document.addEventListener('DOMContentLoaded', () => {
         let controls = colorElement.querySelector('.controls');
         h2.style = "display: none";
         controls.style = "display: none"
-        variants.style = "display: flex"
+        variants.style = "display: flex";
+        
     }
 
     let colors = initializeColors();
+    console.log(colors)
     updateColor(colors) // this function will populate hex,rgb,hsl for all colors
+    
+  
+  
     //All event listeners
+
+    let shades = document.querySelectorAll('.slabs');
+        
+    shades.forEach((shade) => {
+        shade.addEventListener('click', (event) => {
+            let newBg = shade.innerHTML
+            let variants = document.querySelectorAll('.variants');
+            shade.parentNode.parentNode.children[0].style = "display:"
+            shade.parentNode.parentNode.children[0].innerHTML = newBg;
+            shade.parentNode.parentNode.children[1].style = "display: flex;"
+            shade.parentNode.parentNode.style = `background: ${newBg};`
+            shade.parentNode.style = `display: none;`
+
+        })
+    });
     document.querySelectorAll('button.lock').forEach(item => {
         item.addEventListener('click', (event) => {
             //clicking on btn.lock = toggle the icon, no chnage in bg color
@@ -182,6 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleLock(event.target)
         })
     })
+    
+    
     generateBtn.addEventListener('click', e => {
         updateColor(colors)
     })
@@ -190,10 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
         swatchBtn.addEventListener('click', (event) => {
             let colorElement = event.target.parentNode.parentNode;
             let variants = colorElement.querySelector('.variants');
-
             toggleVariants(colorElement, variants)
         })
     })
+
+//clicking on the shade/tint should update the backgorund color;
+    
+
     window.addEventListener('keydown', (e) => {
         if (e.code == 'Space') {
             e.preventDefault();
