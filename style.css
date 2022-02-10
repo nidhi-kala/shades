@@ -12,6 +12,8 @@ html {
 body {
   font-family: "Lato", sans-serif;
   color: rgb(3, 3, 3);
+  max-height: 100vh;
+  overflow: hidden;
 }
 button {
   font-family: "Lato", sans-serif;
@@ -50,6 +52,11 @@ svg {
   box-shadow: 0.2rem;
   font-weight: bold;
 }
+
+.shade-hex {
+  display: none;
+}
+
 .colors {
   display: flex;
   flex-direction: row;
@@ -57,6 +64,7 @@ svg {
   min-height: 80vh;
   color: rgb(31, 31, 31);
   overflow: hidden;
+  max-height: 100vh;
 }
 .color-container {
   display: flex;

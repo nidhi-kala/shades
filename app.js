@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let shadeElem = variants.querySelector(`[data-shade-id="${i}"]`);
             tintElem.style = `background-color: ${tint}; color: #191919;`;
             shadeElem.style = `background-color: ${shade}; color: #dad9d9;`;
-            tintElem.innerHTML = `${tint}`
-            shadeElem.innerHTML = `${shade}`
+            tintElem.innerHTML = `<div class="shade-hex">${tint}</div>`
+            shadeElem.innerHTML = `<div class="shade-hex">${shade}</div>`
         }
     }
     
@@ -187,14 +187,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
     shades.forEach((shade) => {
         shade.addEventListener('click', (event) => {
-            let newBg = shade.innerHTML
+            let newBg = shade.children[0].innerHTML
             let variants = document.querySelectorAll('.variants');
-            shade.parentNode.parentNode.children[0].style = "display:"
+
+            // This is H2 element
+            shade.parentNode.parentNode.children[0].style = "display: flex;"
             shade.parentNode.parentNode.children[0].innerHTML = newBg;
             shade.parentNode.parentNode.children[1].style = "display: flex;"
             shade.parentNode.parentNode.style = `background: ${newBg};`
             shade.parentNode.style = `display: none;`
 
+        })
+
+        shade.addEventListener('mouseenter', (event) => {
+            event.target.children[0].style.display = "flex";
+        })
+        shade.addEventListener('mouseleave', (event) => {
+            event.target.children[0].style.display = "none";
         })
     });
     document.querySelectorAll('button.lock').forEach(item => {
