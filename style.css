@@ -48,7 +48,6 @@ svg {
   transform: scale(1.5, 1.5);
 }
 .slabs:hover {
-  transform: scaleY(1.3);
   box-shadow: 0.2rem;
   font-weight: bold;
 }
@@ -133,5 +132,5 @@ svg {
   background: none;
   cursor: pointer;
   margin: 2rem 0rem;
-  color: rgb(33, 33, 63);
+  color: inherit;
 }

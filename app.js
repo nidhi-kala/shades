@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let shadeElem = variants.querySelector(`[data-shade-id="${i}"]`);
             tintElem.style = `background-color: ${tint}; color: #191919;`;
             shadeElem.style = `background-color: ${shade}; color: #dad9d9;`;
+            tintElem.dataset["textContrast"] = "#191919"
+            shadeElem.dataset["textContrast"] = "#dad9d9"
             tintElem.innerHTML = `<div class="shade-hex">${tint}</div>`
             shadeElem.innerHTML = `<div class="shade-hex">${shade}</div>`
         }
@@ -135,6 +137,35 @@ document.addEventListener('DOMContentLoaded', () => {
             generateShadesTint(color)
         }
     }
+
+    function getContrast(rgb) {
+        let full = 255 + 255 + 255;
+        let third = full / 3;
+        let sum = rgb.red + rgb.green + rgb.blue;
+
+        if (sum <= third) {
+            return "#eeeeee";
+        } else if (sum > (third * 2)) {
+            return "#191919";
+        } else {
+            return "#222";
+        }
+    }
+
+    function getControlsContrast(rgb) {
+       let full = 255 + 255 + 255;
+        let third = full / 3;
+        let sum = rgb.red + rgb.green + rgb.blue;
+
+        if (sum <= third) {
+            return "#ddd";
+        } else if (sum > (third * 2)) {
+            return "#2a2a2a";
+        } else {
+            return "#333";
+        }
+    }
+
     function updateColor(colors) {
         generateColors(colors);
         let colorElements = document.querySelectorAll('.color')
@@ -153,7 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
             originalSlab.innerHTML = hex
             let hexText = currentElement.querySelector('h2');
             hexText.innerHTML = hex;
-
+            hexText.style.color = getContrast(colors[i]['rgb'])
+            currentElement.children[1].style.color = getControlsContrast(colors[i]['rgb'])
         }
 
     }
@@ -188,22 +220,27 @@ document.addEventListener('DOMContentLoaded', () => {
     shades.forEach((shade) => {
         shade.addEventListener('click', (event) => {
             let newBg = shade.children[0].innerHTML
+            let textColor = shade.dataset["textContrast"]
             let variants = document.querySelectorAll('.variants');
 
             // This is H2 element
             shade.parentNode.parentNode.children[0].style = "display: flex;"
             shade.parentNode.parentNode.children[0].innerHTML = newBg;
             shade.parentNode.parentNode.children[1].style = "display: flex;"
-            shade.parentNode.parentNode.style = `background: ${newBg};`
+            shade.parentNode.parentNode.style = `background: ${newBg}; color: ${textColor};`
             shade.parentNode.style = `display: none;`
 
         })
 
         shade.addEventListener('mouseenter', (event) => {
-            event.target.children[0].style.display = "flex";
+            if (event.target.children[0]) {
+                event.target.children[0].style.display = "flex";
+            }
         })
         shade.addEventListener('mouseleave', (event) => {
-            event.target.children[0].style.display = "none";
+            if (event.target.children[0]) {
+                event.target.children[0].style.display = "none";
+            }
         })
     });
     document.querySelectorAll('button.lock').forEach(item => {
