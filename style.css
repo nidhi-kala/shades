@@ -72,11 +72,6 @@ svg {
   width: 100%;
 }
 
-.drop-container {
-  display: contents;
-  height: inherit;
-  overflow: hidden;
-  width: inherit;
 }
 .color {
   display: flex;
@@ -130,12 +125,7 @@ svg {
   flex-direction: column;
   align-items: center;
 }
-.drag-target {
-  display: none;
-  height: 100vh;
-  overflow: hidden;
-  width: 1%;
-}
+
 .adjust,
 .lock,
 .drag {

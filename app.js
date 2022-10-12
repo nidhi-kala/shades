@@ -187,12 +187,30 @@ document.addEventListener("DOMContentLoaded", () => {
     variants.style = "display: flex";
   }
 
+  function colorKey() {
+    let savedColor = [];
+    colors.forEach((color) => {
+      savedColor.push(color.hex);
+    });
+    return savedColor.join("-");
+  }
+
+  function saveToLocalStorage(colorKey) {
+    localStorage.setItem(colorKey, JSON.stringify(colors));
+    alert(`saved ${colorKey}`);
+  }
   let colors = initializeColors();
   updateColor(colors); // this function will populate hex,rgb for all colors
 
   //All event listeners
   let saveBtn = document.querySelector(".save");
-  console.log(saveBtn);
+  saveBtn.addEventListener("click", (e) => {
+    let storageKey = colorKey();
+    saveToLocalStorage(storageKey);
+
+    console.log(storageKey);
+  });
+
   let shades = document.querySelectorAll(".slabs");
   const dragBtns = document.querySelectorAll(".drag");
 
