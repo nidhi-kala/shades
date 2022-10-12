@@ -71,6 +71,13 @@ svg {
   overflow: hidden;
   width: 100%;
 }
+
+.drop-container {
+  display: contents;
+  height: inherit;
+  overflow: hidden;
+  width: inherit;
+}
 .color {
   display: flex;
   flex: 1;
@@ -80,7 +87,6 @@ svg {
 }
 .color h2 {
   font-size: 2rem;
-  cursor: pointer;
 }
 .controls {
   display: flex;
@@ -124,13 +130,23 @@ svg {
   flex-direction: column;
   align-items: center;
 }
-
+.drag-target {
+  display: none;
+  height: 100vh;
+  overflow: hidden;
+  width: 1%;
+}
 .adjust,
-.lock {
+.lock,
+.drag {
   font-size: 2rem;
   border: none;
   background: none;
   cursor: pointer;
-  margin: 2rem 0rem;
+  margin: 1.65rem 0rem;
   color: inherit;
+}
+
+.controls .drag {
+  display: none;
 }
