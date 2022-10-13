@@ -168,7 +168,8 @@ svg {
 .save-popup, .library-popup {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 10px;
   align-items: center;
 }
 .close-save, .close-library{
@@ -177,7 +178,7 @@ svg {
   cursor: pointer;
   font-size:1rem;
   margin: 0.5rem;
-  padding: 0.7rem 0.7rem;
+  padding: 0.5rem 1rem;
   background: rgb(33, 33, 63);
   border: none;
   color: rgb(235, 235, 235);
@@ -186,12 +187,12 @@ svg {
 }
 
 .library-container{
-  display: flex;
   position: absolute;
   top: 33%;
   min-height: 200px;
   min-width: 300px;
 }
+
 ul{
   display: flex;
   flex-direction: column;
@@ -199,8 +200,9 @@ ul{
   justify-content: center;
 }
 li{
-  list-style: none;
-  padding: 0.5rem;
+  font-style: inherit;
+  list-style:none;
+  padding: 0.3rem;
 }
 
 @media screen and (max-width: 768px) {
