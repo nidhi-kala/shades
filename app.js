@@ -210,13 +210,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let saveBtn = document.querySelector(".save"); //save panel btn
   let closeSaveBtn = document.querySelector(".close-save");
+  let libraryContainer = document.querySelector(".library-container");
+
+  let closeLibraryBtn = document.querySelector(".close-library");
+  let libraryBtn = document.querySelector(".library");
+
+  libraryBtn.addEventListener("click", (e) => {
+    libraryContainer.style = "display: flex;";
+  });
+
+  closeLibraryBtn.addEventListener("click", (e) => {
+    libraryContainer.style = "display: none;";
+  });
 
   saveBtn.addEventListener("click", (e) => {
     saveToLocalStorage(colorKey);
   }); //correct
 
   closeSaveBtn.addEventListener("click", (e) => {
-    saveContainer.style = "display: none";
+    saveContainer.style = "display: none;";
   });
 
   let shades = document.querySelectorAll(".slabs");
