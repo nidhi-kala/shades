@@ -1,3 +1,4 @@
+import { getStoredPalettes } from "./modules/load_palettes.js";
 const colorDiv = document.querySelectorAll(".color");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(storageKey, JSON.stringify(colors));
     //alert(`saved ${storageKey}`);
   }
+
   let colors = initializeColors();
   updateColor(colors); // this function will populate hex,rgb for all colors
 
@@ -217,6 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   libraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: flex;";
+    let palettes = getStoredPalettes();
+    console.table(palettes);
   });
 
   closeLibraryBtn.addEventListener("click", (e) => {
