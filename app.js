@@ -147,10 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Based on the boolean generateColors should not be called if update colors is called with saved palette
   function updateColor(colors) {
-    generateColors(colors);
     let colorElements = document.querySelectorAll(".color");
-
     for (let i = 0; i < 5; i++) {
       let hex = colors[i]["hex"];
       let currentElement = colorElements[i];
@@ -194,9 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
       savedColor.push(color.hex);
     });
     return savedColor.join("-");
-  }
-  let saveContainer = document.querySelector(".save-container");
-  //save modal
+  } //function is returning the string of colors to create a key to be stored in local storage
+
+  let saveContainer = document.querySelector(".save-container"); //save modal
   function saveToLocalStorage(colorKey) {
     let storageKey = colorKey();
     saveContainer.style = "display: flex;";
@@ -206,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let colors = initializeColors();
-  updateColor(colors); // this function will populate hex,rgb for all colors
-
+  generateColors(colors); //generating the first color
+  updateColor(colors); // this function will update the hex,rgb for all colors
   //All event listeners
 
   let saveBtn = document.querySelector(".save"); //save panel btn
@@ -229,14 +228,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   saveBtn.addEventListener("click", (e) => {
     saveToLocalStorage(colorKey);
-  }); //correct
+  });
 
   closeSaveBtn.addEventListener("click", (e) => {
     saveContainer.style = "display: none;";
   });
 
   let shades = document.querySelectorAll(".slabs");
-  const dragBtns = document.querySelectorAll(".drag");
 
   shades.forEach((shade) => {
     shade.addEventListener("click", (event) => {
@@ -272,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   generateBtn.addEventListener("click", (e) => {
+    generateColors(colors);
     updateColor(colors);
   });
 
