@@ -194,21 +194,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     return savedColor.join("-");
   }
-
+  let saveContainer = document.querySelector(".save-container");
+  //save modal
   function saveToLocalStorage(colorKey) {
-    localStorage.setItem(colorKey, JSON.stringify(colors));
-    alert(`saved ${colorKey}`);
+    let storageKey = colorKey();
+    saveContainer.style = "display: flex;";
+    document.getElementById("save-msg").innerHTML = `Saved ${storageKey}`;
+    localStorage.setItem(storageKey, JSON.stringify(colors));
+    //alert(`saved ${storageKey}`);
   }
   let colors = initializeColors();
   updateColor(colors); // this function will populate hex,rgb for all colors
 
   //All event listeners
-  let saveBtn = document.querySelector(".save");
-  saveBtn.addEventListener("click", (e) => {
-    let storageKey = colorKey();
-    saveToLocalStorage(storageKey);
 
-    console.log(storageKey);
+  let saveBtn = document.querySelector(".save"); //save panel btn
+  let closeSaveBtn = document.querySelector(".close-save");
+
+  saveBtn.addEventListener("click", (e) => {
+    saveToLocalStorage(colorKey);
+  }); //correct
+
+  closeSaveBtn.addEventListener("click", (e) => {
+    saveContainer.style = "display: none";
   });
 
   let shades = document.querySelectorAll(".slabs");

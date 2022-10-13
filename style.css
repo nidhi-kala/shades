@@ -65,6 +65,7 @@ svg {
   overflow: hidden;
   max-height: 100vh;
 }
+
 .color-container {
   display: flex;
   height: 100vh;
@@ -82,26 +83,27 @@ svg {
 .color h2 {
   font-size: 2rem;
 }
+
 .controls {
   display: flex;
   flex-direction: column;
 }
-.base-panel{
-  backdrop-filter: blur(2rem);
-    background-color: #dad9d93d;
-    -webkit-backdrop-filter: blur(2rem);
-    position: absolute;
-    border-radius: 1rem;
-}
+
 .panel {
   bottom: 1%;
-  left: 33%;
-  width: 33%;
   display: flex;
   align-items: center;
   justify-content: center;
   row-gap: 1rem;
   height: 10vh;
+  left: 35%;
+  right: 35%;
+  min-width: 300px;
+  backdrop-filter: blur(2rem);
+    background-color: #dad9d93d;
+    -webkit-backdrop-filter: blur(2rem);
+    position: absolute;
+    border-radius: 1rem;
 }
 
 .panel button {
@@ -114,6 +116,7 @@ svg {
   cursor: pointer;
   border-radius: 1rem;
 }
+
 .panel p {
   font-size: 1.2rem;
 }
@@ -121,14 +124,14 @@ svg {
 .library-panel,
 .generate-panel,
 .save-panel {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .adjust,
-.lock,
-.drag {
+.lock {
   font-size: 2rem;
   border: none;
   background: none;
@@ -137,7 +140,12 @@ svg {
   color: inherit;
 }
 
-.controls .drag {
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.drag{
   display: none;
 }
 
@@ -146,11 +154,75 @@ svg {
   gap: 20px;
   position: absolute;
   top: 40%;
-  right: 35%;
+  right: 30%;
+  left: 30%;
   border: 1px solid rgb(110, 110, 110);
-  width: 18rem;
+  width: 100px;
   height: auto;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(2rem);
+    background-color: #dad9d93d;
+    -webkit-backdrop-filter: blur(2rem);
+    position: absolute;
+    border-radius: 1rem;
+  }
+.save-popup{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center ;
+}
+.close-save {
+  border: none;
+  outline: none;
+  background: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  color:rgb(53, 53, 53);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  
+
+  .colors {
+    flex-direction: column;
+    width: 100vw;
+  }
+  
+  .color {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+  }
+ .color h2 {
+   font-size: 1rem;
+ }
+  .variants {
+    flex-direction: row;
+  }
+
+  .panel {
+    min-width: min-content;
+    min-height: fit-content;
+    display: flex;
+    transform: scale(0.7,0.7);
+    left: auto;
+    bottom: 0%;
+    row-gap: 0.5rem;
+  }
+    .panel button {
+      margin: 0.7rem;
+      padding: 1rem 1rem;
+      background: rgb(33, 33, 63);
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 0.5rem;
+    }
+  .controls{
+    transform: scale(0.7,0.7);
+  }
 }
