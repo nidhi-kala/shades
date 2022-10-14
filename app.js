@@ -147,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Based on the boolean generateColors should not be called if update colors is called with saved palette
   function updateColor(colors) {
     let colorElements = document.querySelectorAll(".color");
     for (let i = 0; i < 5; i++) {
@@ -157,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (lockBtn.firstChild.classList.contains("fa-lock")) {
         continue;
       }
-
       currentElement.style = `background: ${hex}`;
       updateVariants(colors[i]);
       let originalSlab = currentElement.querySelector(".original");
@@ -196,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } //function is returning the string of colors to create a key to be stored in local storage
 
   let saveContainer = document.querySelector(".save-container"); //save modal
+
   function saveToLocalStorage(colorKey) {
     let storageKey = colorKey();
     saveContainer.style = "display: flex;";
@@ -215,11 +214,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let closeLibraryBtn = document.querySelector(".close-library");
   let libraryBtn = document.querySelector(".library");
+  let list = document.querySelector(".list");
 
   libraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: flex;";
     let palettes = getStoredPalettes();
-    console.table(palettes);
+    Object.keys(palettes).forEach((key) => {
+      let li = list.appendChild(document.createElement("li"));
+      let liClass = li.classList.add("list-item");
+      li.innerHTML = key;
+      console.log(palettes);
+      li.addEventListener("click", (e) => {
+        let paletteName = e.target.innerHTML;
+        console.log(paletteName);
+        updateColor(palettes[paletteName]);
+      });
+    });
   });
 
   closeLibraryBtn.addEventListener("click", (e) => {
@@ -282,8 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  //clicking on the shade/tint should update the backgorund color;
-
   window.addEventListener("keydown", (e) => {
     if (e.code == "Space") {
       e.preventDefault();
@@ -291,5 +299,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-//export { updatedColors };

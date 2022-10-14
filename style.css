@@ -169,9 +169,10 @@ svg {
 .save-popup, .library-popup {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
   align-items: center;
+  overflow-y: scroll;
 }
 .close-save, .close-library{
   font-weight: bold;
@@ -189,9 +190,17 @@ svg {
 
 .library-container{
   position: absolute;
-  top: 33%;
-  min-height: 200px;
-  min-width: 300px;
+  top: 25%;
+  right: 33%;
+  left: 33%;
+  height: 50vh;
+  overflow-y: scroll;
+  min-width: 35vw;
+  max-width: fit-content;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
 }
 
 ul{
@@ -204,7 +213,9 @@ li{
   font-style: inherit;
   list-style:none;
   padding: 0.3rem;
+  cursor: pointer;
 }
+
 
 @media screen and (max-width: 768px) {
   .body{
@@ -253,39 +264,15 @@ li{
       transform: scale(1, 1);
   }
   .library-container{
-    width: 100px;
-    height: 250px;
-    overflow: scroll;
-    left:30%;
-    right: 30%;
-    }
-}
-@media screen and (max-width: 320px){
-  .library-container{
-    width: 20%;
-    height: 33%;
-    overflow: scroll;
-    left: 5%;
-    right: 5%;
+   outline: 2px solid red;
+   max-height: 40%;
+   justify-content:flex-start;
+   align-content: flex-start;
+   align-items: flex-start;
   }
-}
-@media screen and (max-width: 374px) and (min-width: 319px){
-  .library-container {
-    width: 20%;
-    height: 33%;
-    overflow: scroll;
-    left: 10%;
-    right: 10%;
+  .library-popup{
     transform: scale(0.5,0.5);
-  }
-}
-@media screen and (max-width: 425px) and (min-width:375px){
-  .library-container {
-    width: 20%;
-    height: 35%;
-    overflow: scroll;
-    left:10%;
-    right: 5%;
-    transform: scale(0.7, 0.7);
+    padding: 0;
+    margin: 0;
   }
 }
