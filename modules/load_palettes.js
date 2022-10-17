@@ -7,6 +7,5 @@ export function getStoredPalettes() {
 
     paletteList[storedKey] = JSON.parse(palette);
   }
-
   return paletteList;
 }

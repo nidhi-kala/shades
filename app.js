@@ -223,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let li = list.appendChild(document.createElement("li"));
       let liClass = li.classList.add("list-item");
       li.innerHTML = key;
-      console.log(palettes);
       li.addEventListener("click", (e) => {
         let paletteName = e.target.innerHTML;
         console.log(paletteName);
@@ -251,13 +250,16 @@ document.addEventListener("DOMContentLoaded", () => {
       let newBg = shade.children[0].innerHTML;
       let textColor = shade.dataset["textContrast"];
       let variants = document.querySelectorAll(".variants");
-
+      let colorId = shade.parentNode.parentNode.dataset["colorId"];
+      colors[colorId].hex = newBg;
+      console.log(colors);
       // This is H2 element
       shade.parentNode.parentNode.children[0].style = "display: flex;";
       shade.parentNode.parentNode.children[0].innerHTML = newBg;
       shade.parentNode.parentNode.children[1].style = "display: flex;";
       shade.parentNode.parentNode.style = `background: ${newBg}; color: ${textColor};`;
       shade.parentNode.style = `display: none;`;
+      colors;
     });
 
     shade.addEventListener("mouseenter", (event) => {
