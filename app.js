@@ -219,13 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
   libraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: flex;";
     let palettes = getStoredPalettes();
+    console.log(palettes);
     Object.keys(palettes).forEach((key) => {
       let li = list.appendChild(document.createElement("li"));
       let liClass = li.classList.add("list-item");
       li.innerHTML = key;
       li.addEventListener("click", (e) => {
-        let paletteName = e.target.innerHTML;
-        console.log(paletteName);
+        let paletteName = e.target.innerHTML; //assigning key to li
         updateColor(palettes[paletteName]);
       });
     });
@@ -233,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeLibraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: none;";
+    list.innerHTML = "";
   });
 
   saveBtn.addEventListener("click", (e) => {
@@ -251,8 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let textColor = shade.dataset["textContrast"];
       let variants = document.querySelectorAll(".variants");
       let colorId = shade.parentNode.parentNode.dataset["colorId"];
-      colors[colorId].hex = newBg;
-      console.log(colors);
       // This is H2 element
       shade.parentNode.parentNode.children[0].style = "display: flex;";
       shade.parentNode.parentNode.children[0].innerHTML = newBg;
