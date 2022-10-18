@@ -1,6 +1,7 @@
 import { getStoredPalettes } from "./modules/load_palettes.js";
 const colorDiv = document.querySelectorAll(".color");
-
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty("--vh", `${vh}px`);
 document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.querySelector(".generate");
   const swatchBtns = document.querySelectorAll(".adjust");

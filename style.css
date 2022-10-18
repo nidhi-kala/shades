@@ -24,7 +24,11 @@ i,
 svg {
   pointer-events: none;
 }
-
+.responsive {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .variants {
   display: none;
   flex-direction: column;
@@ -58,13 +62,13 @@ svg {
 }
 
 .colors {
+  flex-basis: 2;
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: 80vh;
+  max-height: 90vh;
   color: rgb(31, 31, 31);
   overflow: hidden;
-  max-height: 100vh;
 }
 
 .color-container {
@@ -91,24 +95,25 @@ svg {
 }
 
 .panel {
-  bottom: 1%;
+  background-color: #b5b5b53d;
+  flex-basis: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   row-gap: 1rem;
   height: 10vh;
-  left: 35%;
-  right: 35%;
+  /*left: 35%;
+  right: 35%;*/
   min-width: 300px;
-  backdrop-filter: blur(2rem);
+  /*backdrop-filter: blur(2rem);
   background-color: #dad9d93d;
   -webkit-backdrop-filter: blur(2rem);
-  position: absolute;
+  position: absolute; */
   border-radius: 1rem;
 }
 
 .panel button {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 1.2rem;
   padding: 1rem 1rem;
   background: rgb(33, 33, 63);
@@ -119,7 +124,7 @@ svg {
 }
 
 .panel p {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .library-panel,
@@ -219,19 +224,21 @@ li{
 
 @media screen and (max-width: 768px) {
   .body{
+    overflow-x: hidden;
     scroll-behavior: smooth;
-    overflow-y: hidden;
   }
   .colors {
     flex-direction: column;
-    width: 100vw;
+    object-fit: scale-down;
+    max-height: 85vh;
   }
 
   .color {
     flex-direction: row;
-    align-items: baseline;
+    align-items:center;
     justify-content: space-around;
   }
+
   .color h2 {
     font-size: 1rem;
   }
@@ -240,14 +247,13 @@ li{
   }
 
   .panel {
-    min-width: min-content;
-    min-height: fit-content;
     display: flex;
-    transform: scale(0.7, 0.7);
-    left: auto;
-    bottom: 0%;
     row-gap: 0.5rem;
+    max-height: 15vh;
+    min-width: fit-content;
+    padding-bottom: 1rem;
   }
+
   .panel button {
     margin: 0.7rem;
     padding: 1rem 1rem;
@@ -256,9 +262,14 @@ li{
     color: white;
     cursor: pointer;
     border-radius: 0.5rem;
+    font-size: medium;
   }
   .controls {
     transform: scale(0.7, 0.7);
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
   }
   .original {
       transform: scale(1, 1);
@@ -275,4 +286,5 @@ li{
     padding: 0;
     margin: 0;
   }
+
 }
