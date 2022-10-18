@@ -159,7 +159,7 @@ svg {
   left: 33%;
   border: 1px solid rgb(108, 104, 104);
   min-width: 100px;
-  max-width:40vw;
+  max-width:50vw;
   height: auto;
   display: none;
   justify-content: center;
