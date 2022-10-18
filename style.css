@@ -95,7 +95,7 @@ svg {
 }
 
 .panel {
-  background-color: #b5b5b53d;
+  background-color: #c5c5c53d;
   flex-basis: 1;
   display: flex;
   align-items: center;
@@ -154,12 +154,12 @@ svg {
   padding: 2rem 1rem;
   gap: 20px;
   position: absolute;
-  top: 40%;
-  right: 30%;
-  left: 30%;
+  top: 30%;
+  right: 33%;
+  left: 33%;
   border: 1px solid rgb(108, 104, 104);
   min-width: 100px;
-  width:fit-content;
+  max-width:40vw;
   height: auto;
   display: none;
   justify-content: center;
@@ -195,7 +195,7 @@ svg {
 
 .library-container{
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 33%;
   left: 33%;
   height: 50vh;
@@ -224,15 +224,17 @@ li{
 
 @media screen and (max-width: 768px) {
   .body{
-    overflow-x: hidden;
+    overflow: hidden;
     scroll-behavior: smooth;
   }
   .colors {
     flex-direction: column;
     object-fit: scale-down;
-    max-height: 85vh;
+    height: 85vh;
   }
-
+.responsive{
+  max-height: 100vh;
+}
   .color {
     flex-direction: row;
     align-items:center;
@@ -249,9 +251,8 @@ li{
   .panel {
     display: flex;
     row-gap: 0.5rem;
-    max-height: 15vh;
+    height: 10vh;
     min-width: fit-content;
-    padding-bottom: 1rem;
   }
 
   .panel button {
@@ -275,16 +276,16 @@ li{
       transform: scale(1, 1);
   }
   .library-container{
-   outline: 2px solid red;
-   max-height: 40%;
+   min-height: 15vh;
+   max-height: 40vh;
+   min-width: 60vw;
+   left: 10%;
+   right: 10%;
+   top:20%;
    justify-content:flex-start;
    align-content: flex-start;
    align-items: flex-start;
   }
-  .library-popup{
-    transform: scale(0.5,0.5);
-    padding: 0;
-    margin: 0;
-  }
+ 
 
 }

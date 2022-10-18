@@ -1,7 +1,6 @@
 import { getStoredPalettes } from "./modules/load_palettes.js";
 const colorDiv = document.querySelectorAll(".color");
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty("--vh", `${vh}px`);
+
 document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.querySelector(".generate");
   const swatchBtns = document.querySelectorAll(".adjust");
@@ -193,10 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     return savedColor.join("-");
   } //function is returning the string of colors to create a key to be stored in local storage
-
-  let saveContainer = document.querySelector(".save-container"); //save modal
-
+  let saveContainer = document.querySelector(".save-container");
   function saveToLocalStorage(colorKey) {
+    //save modal
     let storageKey = colorKey();
     saveContainer.style = "display: flex;";
     document.getElementById("save-msg").innerHTML = `Saved ${storageKey}`;
@@ -220,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
   libraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: flex;";
     let palettes = getStoredPalettes();
-    console.log(palettes);
     Object.keys(palettes).forEach((key) => {
       let li = list.appendChild(document.createElement("li"));
       let liClass = li.classList.add("list-item");
@@ -259,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
       shade.parentNode.parentNode.children[1].style = "display: flex;";
       shade.parentNode.parentNode.style = `background: ${newBg}; color: ${textColor};`;
       shade.parentNode.style = `display: none;`;
-      colors;
+      colors[colorId].hex = newBg;
     });
 
     shade.addEventListener("mouseenter", (event) => {
