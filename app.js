@@ -218,14 +218,20 @@ document.addEventListener("DOMContentLoaded", () => {
   libraryBtn.addEventListener("click", (e) => {
     libraryContainer.style = "display: flex;";
     let palettes = getStoredPalettes();
-    Object.keys(palettes).forEach((key) => {
-      let li = list.appendChild(document.createElement("li"));
-      let liClass = li.classList.add("list-item");
-      li.innerHTML = key;
-      li.addEventListener("click", (e) => {
-        let paletteName = e.target.innerHTML; //assigning key to li
-        updateColor(palettes[paletteName]);
+    Object.keys(palettes).forEach((palette) => {
+      let li = document.createElement("li");
+      li.classList.add("list-item");
+      palette.split("-").forEach((hexCode) => {
+        let span = document.createElement("span");
+        span.classList.add("color-block");
+        span.style.background = hexCode;
+        li.append(span);
       });
+      li.addEventListener("click", (e) => {
+        updateColor(palettes[palette]);
+      });
+
+      list.appendChild(li);
     });
   });
 
